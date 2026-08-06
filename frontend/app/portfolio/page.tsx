@@ -64,7 +64,7 @@ export default function PortfolioPage() {
             ))
           : filteredProjects.map((project, index) => (
               <div key={index} className="flex flex-col h-full rounded-2xl bg-gray-900/50 border border-gray-800/50 overflow-hidden group hover:-translate-y-2 transition-all duration-300">
-                {/* Konten Kartu Project Asli Anda */}
+                <img src={project.image} alt={project.title} className="h-48 w-full object-cover" />
                 <div className="p-6">
                     <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
                     <p className="text-gray-400 text-sm">{project.description}</p>

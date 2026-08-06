@@ -48,6 +48,14 @@ export default function CertificatesPage() {
                     <p className="text-indigo-400 font-medium">{cert.issuer}</p>
                     <p className="text-sm text-gray-500">{cert.date}</p>
                   </div>
+                  <a
+                    href={cert.image}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl bg-yellow-400 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-yellow-300 transition-colors duration-200"
+                  >
+                    Lihat Kredensial
+                  </a>
                 </div>
               </div>
             ))}

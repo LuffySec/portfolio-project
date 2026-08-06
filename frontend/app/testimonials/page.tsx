@@ -44,10 +44,15 @@ export default function TestimonialsPage() {
                 <div className="mb-6 flex-1">
                   <p className="text-gray-400 italic leading-relaxed">"{testimonial.quote}"</p>
                 </div>
-                <div className="flex items-center gap-4 pt-4 border-t border-gray-800/50">
+                <div className="flex items-center justify-between gap-4 pt-4 border-t border-gray-800/50">
                   <div>
                     <h4 className="text-white font-bold">{testimonial.name}</h4>
                     <p className="text-sm text-indigo-400">{testimonial.role} di {testimonial.company}</p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: testimonial.stars }, (_, starIndex) => (
+                      <span key={starIndex} className="text-yellow-400">★</span>
+                    ))}
                   </div>
                 </div>
               </div>

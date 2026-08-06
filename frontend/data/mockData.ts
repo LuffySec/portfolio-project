@@ -4,6 +4,7 @@ export interface Project {
   category: string;
   description: string;
   githubUrl: string;
+  image: string;
 }
 
 export interface Skill {
@@ -28,8 +29,8 @@ export interface Testimonial {
 
 // Mock Data Arrays
 const projects: Project[] = [
-  { title: "Relawan Pendidikan Indonesia", category: "Web Dev", description: "Membuat platform untuk komunitas Relawan Pendidikan Indonesia", githubUrl: "#" },
-  { title: "Task Management App", category: "Mobile App", description: "Application for employee tracking and task management.", githubUrl: "#" },
+  { title: "Relawan Pendidikan Indonesia", category: "Web Dev", description: "Membuat platform untuk komunitas Relawan Pendidikan Indonesia", githubUrl: "#", image: "/project1.png" },
+  { title: "Task Management App", category: "Mobile App", description: "Application for employee tracking and task management.", githubUrl: "#", image: "/project1.png" },
   // Tambahkan data proyek lainnya sesuai kebutuhan...
 ];
 
@@ -37,6 +38,7 @@ const skills: Skill[] = [
   { name: "React / Next.js", percentage: 90 },
   { name: "TypeScript", percentage: 85 },
   { name: "Tailwind CSS", percentage: 95 },
+  { name: "Cyber Security", percentage: 88 },
   // Tambahkan data skill lainnya sesuai kebutuhan...
 ];
 
@@ -93,13 +95,19 @@ const certificates: Certificate[] = [
 
 const testimonials: Testimonial[] = [
   {
-    name: "Siti Rahmawati",
-    role: "Senior Product Manager",
-    company: "Tech Corp",
-    quote: "Pemahaman Alif terhadap framework Next.js dan Tailwind CSS sangat mengagumkan. Proyek dikerjakan dengan rapi dan tepat waktu.",
+    name: "Erlan Yusuf Rafif",
+    role: "Project Coordinator",
+    company: "PT Digital Nusantara",
+    quote: "Kerja timnya cepat tanggap dan desainnya rapi, sangat membantu presentasi klien kami.",
     stars: 5,
   },
-  // Tambahkan data testimonial lainnya sesuai kebutuhan...
+  {
+    name: "Christian Renato Wongkar",
+    role: "IT Supervisor",
+    company: "CyberSolusi",
+    quote: "Sangat profesional, hasilnya bersih dan mudah digunakan. Review teknisnya juga sangat detail.",
+    stars: 4,
+  },
 ];
 
 // Simulasi Delay untuk Fetching Data
