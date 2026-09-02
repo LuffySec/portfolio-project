@@ -1,63 +1,86 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getTestimonials, Testimonial } from "@/data/mockData";
+import { fetchTestimony } from "@/data/api";
+import { Testimony } from "@/data/mockData";
 import SkeletonCard from "@/components/SkeletonCard";
 
-export default function TestimonialsPage() {
-  const [testimonialsList, setTestimonialsList] = useState<Testimonial[]>([]);
+export default function TestimonialPage() {
+  const [testimonialsList, setTestimonialsList] = useState<Testimony[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchTestimonials() {
+    async function loadTestimonials() {
       try {
         setLoading(true);
-        const data = await getTestimonials();
+        const data = await fetchTestimony();
         setTestimonialsList(data);
       } catch (error) {
-        console.error("Failed to fetch testimonials:", error);
+        console.error("Failed to fetch testimony:", error);
       } finally {
         setLoading(false);
       }
     }
-    fetchTestimonials();
+    
+    loadTestimonials();
   }, []);
 
   return (
-    <div className="py-20 max-w-6xl mx-auto px-4 min-h-screen">
-      <div className="text-center mb-16">
-        <h1 className="text-4xl font-bold text-white mb-4">
-          Client <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Testimonials</span>
-        </h1>
-        <p className="text-gray-400 max-w-xl mx-auto">
-          Apa kata mereka yang pernah bekerja sama dengan saya.
-        </p>
-      </div>
+    <section className="py-16 sm:py-20 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+            Testimonials
+          </h1>
+          <p className="text-gray-400 max-w-xl mx-auto">
+            Apa pendapat para guru dan rekan sejawat mengenai dedikasi, keterampilan, dan etos kerja saya selama berkolaborasi.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {loading
-          ? Array.from({ length: 3 }).map((_, i) => (
-              <SkeletonCard key={i} variant="testimonial" />
-            ))
-          : testimonialsList.map((testimonial, index) => (
-              <div key={index} className="p-6 bg-gray-900/50 rounded-2xl border border-gray-800/50 flex flex-col hover:-translate-y-2 transition-all duration-300">
-                <div className="mb-6 flex-1">
-                  <p className="text-gray-400 italic leading-relaxed">"{testimonial.quote}"</p>
-                </div>
-                <div className="flex items-center justify-between gap-4 pt-4 border-t border-gray-800/50">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {loading
+            ? Array.from({ length: 3 }).map((_, i) => (
+                <SkeletonCard key={i} variant="testimonial" />
+              ))
+            : testimonialsList.map((test) => (
+                <div
+                  key={test.id}
+                  className="p-6 sm:p-8 rounded-2xl bg-gray-900/50 border border-gray-800/50 hover:border-indigo-500/30 transition-all duration-300 flex flex-col justify-between"
+                >
                   <div>
-                    <h4 className="text-white font-bold">{testimonial.name}</h4>
-                    <p className="text-sm text-indigo-400">{testimonial.role} di {testimonial.company}</p>
+                    <div className="flex gap-1 mb-6">
+                      {Array.from({ length: test.stars }).map((_, i) => (
+                        <span key={i} className="text-amber-400 text-lg">
+                          ★
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <blockquote className="text-gray-300 italic leading-relaxed text-sm sm:text-base mb-8">
+                      &quot;{test.quote}&quot;
+                    </blockquote>
                   </div>
-                  <div className="flex items-center gap-1">
-                    {Array.from({ length: testimonial.stars }, (_, starIndex) => (
-                      <span key={starIndex} className="text-yellow-400">★</span>
-                    ))}
+                  
+                  <div className="flex items-center gap-4 pt-4 border-t border-gray-800/50">
+                    <div className="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center text-2xl shrink-0 border border-gray-800">
+                      {test.avatar}
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-white leading-none">
+                        {test.name}
+                      </h4>
+                      <p className="text-xs text-indigo-400 mt-1.5 leading-none">
+                        {test.role}
+                      </p>
+                      <p className="text-xs text-gray-500 mt-1 leading-none">
+                        {test.company}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

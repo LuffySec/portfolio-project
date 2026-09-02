@@ -1,135 +1,218 @@
-// Definisi Interface
 export interface Project {
+  id: number;
   title: string;
   category: string;
   description: string;
+  tech: string[];
+  demoUrl: string;
   githubUrl: string;
-  image: string;
 }
 
 export interface Skill {
   name: string;
+  level: string;
   percentage: number;
 }
 
-export interface Certificate {
-  name: string;
-  issuer: string;
-  date: string;
-  image: string;
+export interface SkillGroup {
+  title: string;
+  icon: string;
+  skills: Skill[];
 }
 
-export interface Testimonial {
+export interface Certificate {
+  id: number;
+  title: string;
+  issuer: string;
+  date: string;
+  credentialId: string;
+  verificationUrl: string;
+}
+
+export interface Testimony {
+  id: number;
   name: string;
   role: string;
   company: string;
-  quote: string;
+  avatar: string;
   stars: number;
+  quote: string;
 }
 
-// Mock Data Arrays
+// 1. Projects Data
 const projects: Project[] = [
-  { title: "Relawan Pendidikan Indonesia", category: "Web Dev", description: "Membuat platform untuk komunitas Relawan Pendidikan Indonesia", githubUrl: "#", image: "/project1.png" },
-  { title: "Task Management App", category: "Mobile App", description: "Application for employee tracking and task management.", githubUrl: "#", image: "/project1.png" },
-  // Tambahkan data proyek lainnya sesuai kebutuhan...
+  {
+    id: 1,
+    title: "Relawan Pendidikan Indonesia",
+    category: "Web Dev",
+    description: "Membuat platform untuk komunitas Relawan Pendidikan Indonesia",
+    tech: ["React.js", "Next.js", "Tailwind"], 
+    demoUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: 2,
+    title: "Task Management App",
+    category: "Mobile App",
+    description: "Application for employee tracking and task management.",
+    tech: ["React Native", "Express.js"],
+    demoUrl: "#",
+    githubUrl: "#",
+  },
 ];
 
-const skills: Skill[] = [
-  { name: "React / Next.js", percentage: 90 },
-  { name: "TypeScript", percentage: 85 },
-  { name: "Tailwind CSS", percentage: 95 },
-  { name: "Cyber Security", percentage: 88 },
-  // Tambahkan data skill lainnya sesuai kebutuhan...
+// 2. Skills Data
+const skillGroups: SkillGroup[] = [
+  {
+    title: "Web Development",
+    icon: "🌐",
+    skills: [
+      {
+        name: "React / Next.js",
+        level: "Advanced",
+        percentage: 90,
+      },
+      {
+        name: "Express JS",
+        level: "Advanced",
+        percentage: 85,
+      },
+    ],
+  },
+  {
+    title: "Cyber Security & Pentesting",
+    icon: "🛡️",
+    skills: [
+      {
+        name: "Cyber Security",
+        level: "Expert",
+        percentage: 100,
+      },
+      {
+        name: "Penetration Testing",
+        level: "Expert",
+        percentage: 95,
+      },
+    ],
+  },
 ];
 
+// 3. Certificate Data
 const certificates: Certificate[] = [
   {
-    name: "Juara 1 International Blue Arena CTF Competition",
+    id: 1,
+    title: "Juara 1 International Blue Arena CTF Competition",
     issuer: "International Blue Arena",
     date: "2025",
-    image: "/certificate1.png",
+    credentialId: "N/A",
+    verificationUrl: "#",
   },
   {
-    name: "Medallion For Excellence Bidang Teknologi Keamanan Siber",
+    id: 2,
+    title: "Medallion For Excellence Bidang Teknologi Keamanan Siber",
     issuer: "Lomba Kompetensi Siswa Tingkat Nasional Puspresnas",
     date: "2025",
-    image: "/certificate2.png",
+    credentialId: "N/A",
+    verificationUrl: "#",
   },
   {
-    name: "BNSP Sertifikat Kompetensi Cyber Security",
+    id: 3,
+    title: "BNSP Sertifikat Kompetensi Cyber Security",
     issuer: "Badan Nasional Sertifikasi Profesi",
     date: "2025",
-    image: "/certificate3.png",
+    credentialId: "N/A",
+    verificationUrl: "#",
   },
   {
-    name: "Juara 3 Lomba Web Design",
+    id: 4,
+    title: "Juara 3 Lomba Web Design",
     issuer: "Politeknik Negeri Ujung Pandang",
     date: "2024",
-    image: "/certificate4.png",
+    credentialId: "N/A",
+    verificationUrl: "#",
   },
   {
-    name: "Sertifikat Apresiasi Diskominfo Kota Batam",
+    id: 5,
+    title: "Sertifikat Apresiasi Diskominfo Kota Batam",
     issuer: "Diskominfo Kota Batam",
     date: "2025",
-    image: "/certificate5.png",
+    credentialId: "N/A",
+    verificationUrl: "#",
   },
   {
-    name: "Sertifikat Apresiasi Diskominfo Kota Bandung",
+    id: 6,
+    title: "Sertifikat Apresiasi Diskominfo Kota Bandung",
     issuer: "Diskominfo Kota Bandung",
     date: "2025",
-    image: "/certificate6.png",
+    credentialId: "N/A",
+    verificationUrl: "#",
   },
   {
-    name: "Finalis Lomba Capture The Flag SRIFOTON",
+    id: 7,
+    title: "Finalis Lomba Capture The Flag SRIFOTON",
     issuer: "Universitas Sriwijaya",
     date: "2025",
-    image: "/certificate7.png",
+    credentialId: "N/A",
+    verificationUrl: "#",
   },
   {
-    name: "Sertifikat Apresiasi Diskominfo Kota Pontianak",
+    id: 8,
+    title: "Sertifikat Apresiasi Diskominfo Kota Pontianak",
     issuer: "Diskominfo Kota Pontianak",
     date: "2025",
-    image: "/certificate8.png",
+    credentialId: "N/A",
+    verificationUrl: "#",
   },
 ];
 
-const testimonials: Testimonial[] = [
+// 4. Testimony Data
+const testimony: Testimony[] = [
   {
+    id: 1,
     name: "Erlan Yusuf Rafif",
     role: "Project Coordinator",
     company: "PT Digital Nusantara",
-    quote: "Kerja timnya cepat tanggap dan desainnya rapi, sangat membantu presentasi klien kami.",
+    avatar: "👨‍💻",
     stars: 5,
+    quote:
+      "Kerja timnya cepat tanggap dan desainnya rapi, sangat membantu presentasi klien kami.",
   },
   {
+    id: 2,
     name: "Christian Renato Wongkar",
     role: "IT Supervisor",
     company: "CyberSolusi",
-    quote: "Sangat profesional, hasilnya bersih dan mudah digunakan. Review teknisnya juga sangat detail.",
+    avatar: "👨‍💼",
     stars: 4,
+    quote:
+      "Sangat profesional, hasilnya bersih dan mudah digunakan. Review teknisnya juga sangat detail.",
   },
 ];
 
-// Simulasi Delay untuk Fetching Data
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+// Simulasi delay loading
+const delay = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
-// Fungsi Fetching Asinkron
+// Get Projects
 export async function getProjects(): Promise<Project[]> {
-  await delay(1000);
+  await delay(1200);
   return projects;
 }
 
-export async function getSkills(): Promise<Skill[]> {
+// Get Skills
+export async function getSkills(): Promise<SkillGroup[]> {
   await delay(1000);
-  return skills;
+  return skillGroups;
 }
 
+// Get Certificates
 export async function getCertificates(): Promise<Certificate[]> {
-  await delay(1000);
+  await delay(1200);
   return certificates;
 }
 
-export async function getTestimonials(): Promise<Testimonial[]> {
-  await delay(1000);
-  return testimonials;
+// Get Testimony
+export async function getTestimony(): Promise<Testimony[]> {
+  await delay(800);
+  return testimony;
 }
